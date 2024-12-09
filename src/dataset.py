@@ -1,29 +1,20 @@
-from pathlib import Path
-
-import typer
-from loguru import logger
-from tqdm import tqdm
-
-from src.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
-
-app = typer.Typer()
+import pandas as pd
+import redivis
 
 
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = RAW_DATA_DIR / "dataset.csv",
-    output_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    # ----------------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Processing dataset...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Processing dataset complete.")
-    # -----------------------------------------
+def load_data():
+    """
+    Loads climate change earth surface temperature data from Redivis.
 
+    This function connects to the Redivis platform using a specified user and dataset,
+    retrieves the table containing global temperatures by major city, and converts it
+    into a pandas DataFrame.
 
-if __name__ == "__main__":
-    app()
+    Returns:
+        pandas.DataFrame: A DataFrame containing the global temperatures by major city data.
+    """
+    user = redivis.user("cdpdemo")
+    dataset = user.dataset("climate_change_earth_surface_temperature_data:1e0a:v1_0")
+    table = dataset.table("global_temperatures_by_major_city:7x6x")
+    df = table.to_pandas_dataframe()
+    return df
