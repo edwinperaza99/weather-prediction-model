@@ -1,5 +1,11 @@
 import pandas as pd
+from pathlib import Path
 
+INTERIM_DATA_PATH = Path("..") / "data" / "interim"
+INTERIM_DATA_PATH.mkdir(parents=True, exist_ok=True)
+
+PROCESSED_DATA_PATH = Path("..") / "data" / "processed"
+PROCESSED_DATA_PATH.mkdir(parents=True, exist_ok=True)
 
 # Function to convert latitude and longitude into numeric
 def convert_lat_lon(value):
@@ -21,7 +27,7 @@ def convert_lat_lon(value):
         return -float(value[:-1])  # South and West are negative
 
 
-def preprocess_data(df):
+def preprocess_data(df, save_interim=True, save_processed=True):
     """
     Preprocess the input DataFrame by performing the following steps:
 
@@ -50,6 +56,11 @@ def preprocess_data(df):
     # Remove rows with missing values
     df = df.dropna(subset=["AverageTemperature", "AverageTemperatureUncertainty"])
 
+    if save_interim:
+        interim_file_path = INTERIM_DATA_PATH / "global_temperature_cleaned.csv"
+        df.to_csv(interim_file_path, index=False)
+        print(f"Interim data saved to {interim_file_path}")
+
     # Apply the function to Latitude and Longitude columns, only if needed
     if df["Latitude"].dtype != "float64" and df["Latitude"].dtype != "int64":
         df["Latitude"] = df["Latitude"].apply(convert_lat_lon)
@@ -62,5 +73,10 @@ def preprocess_data(df):
     # Drop the 'City' and 'dt' columns only if they exist
     columns_to_drop = ["City", "dt"]
     df = df.drop(columns=[col for col in columns_to_drop if col in df.columns])
+
+    if save_processed:
+        processed_file_path = PROCESSED_DATA_PATH / "global_temperature_final.csv"
+        df.to_csv(processed_file_path, index=False)
+        print(f"Processed data saved to {processed_file_path}")
 
     return df
