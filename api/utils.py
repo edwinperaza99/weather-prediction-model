@@ -1,7 +1,7 @@
 import os
 import pickle
 
-from sklearn.metrics._dist_metrics import EuclideanDistance
+import pandas as pd
 
 
 def load_models():
@@ -51,12 +51,23 @@ def make_predictions(models, features):
         dict: A dictionary with model names as keys and predictions as values.
     """
     predictions = {}
+
+    # Ensure features is a DataFrame with the correct columns
+    columns = [
+        "Year",
+        "Latitude",
+        "Longitude",
+        "Month",
+    ]
+    features_df = pd.DataFrame([features], columns=columns)
+
     for model_name, model in models.items():
         try:
             # Predict with the model
-            prediction = model.predict([features])
+            prediction = model.predict(features_df)
             predictions[model_name] = prediction[0]
         except Exception as e:
             # Handle prediction errors gracefully
             predictions[model_name] = None
+
     return predictions
