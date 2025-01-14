@@ -1,3 +1,4 @@
+import logging
 import os
 import pickle
 
@@ -33,7 +34,9 @@ def load_models():
         if os.path.exists(filename):
             with open(filename, "rb") as f:
                 models[model_name] = pickle.load(f)
+            logging.info(f"Model {model_name} loaded from {filename}.")
         else:
+            logging.warning(f"Model file not found: {filename}")
             raise FileNotFoundError(f"Model file not found: {filename}")
 
     return models
@@ -68,6 +71,7 @@ def make_predictions(models, features):
             predictions[model_name] = prediction[0]
         except Exception as e:
             # Handle prediction errors gracefully
+            logging.error(f"Error predicting with model {model_name}: {e}", exc_info=True)
             predictions[model_name] = None
 
     return predictions

@@ -1,3 +1,5 @@
+import logging
+
 from flasgger import Swagger
 from flask import Flask, jsonify, request
 
@@ -10,7 +12,23 @@ app = Flask(__name__)
 Swagger(app)
 
 # Load models on startup
-MODELS = load_models()
+logging.info("Loading models...")
+try:
+    MODELS = load_models()
+    logging.info("Models loaded successfully.")
+except FileNotFoundError as e:
+    logging.error(f"Error loading models: {e}")
+    MODELS = {}
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("weather_app.log"),  # Log to a file
+        logging.StreamHandler(),  # Log to the console
+    ],
+)
 
 
 @app.route("/predict", methods=["POST"])
@@ -93,9 +111,11 @@ def predict():
             for model_name, value in raw_predictions.items()
         ]
 
+        logging.info(f"Predictions generated for input {features}: {formatted_predictions}")
         return jsonify({"predictions": formatted_predictions})
 
     except Exception as e:
+        logging.error(f"Error during prediction: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
 
 
