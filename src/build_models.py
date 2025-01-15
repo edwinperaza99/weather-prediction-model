@@ -10,9 +10,9 @@ from modeling.train import train_model
 # Load preprocessed data or raw data
 df = load_preprocessed_data()
 if df is None:
-    print("Preprocessed data not found. Loading raw data.")
-    data = load_data_redivis()
-    df = preprocess_data(data)
+    print("Preprocessed data not found.")
+    # data = load_data_redivis()
+    # df = preprocess_data(data)
 
 # Define features and target
 X = df[["Year", "Latitude", "Longitude", "Month"]]
