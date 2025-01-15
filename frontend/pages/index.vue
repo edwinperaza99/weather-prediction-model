@@ -3,7 +3,7 @@
 	<div class="container mx-auto px-2" id="predict-form">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
 			<div
-				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-4 border-base-300 flex flex-col flex-none"
+				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-2 border-accent flex flex-col flex-none"
 			>
 				<h2
 					class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary"
@@ -104,7 +104,7 @@
 				:center.sync="mapCenter"
 				@dragend="updateCoordinatesFromMap"
 				:use-global-leaflet="false"
-				class="bg-base-100 rounded-lg shadow-xl border-4 border-base-300 aspect-video"
+				class="bg-base-100 rounded-lg shadow-xl border-2 border-accent aspect-video"
 			>
 				<LTileLayer
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -1,17 +1,26 @@
 <template>
-	<div class="hero bg-base-100 py-10 min-h-screen border-b border-accent">
+	<div class="hero bg-base-100 py-10 min-h-screen border-b-2 border-accent">
 		<div class="text-center hero-content">
 			<div class="max-w-lg">
-				<h1 class="mb-4 text-4xl font-extrabold text-primary">
-					Weather Prediction
-				</h1>
-				<p class="mb-6 text-lg text-secondary">
+				<h1 class="mb-4 text-4xl font-extrabold text-primary">Weatheria</h1>
+				<p class="mb-6 text-lg text-content">
 					Leverage the power of advanced machine learning algorithms to
 					accurately predict weather patterns. Start exploring today!
 				</p>
-				<a href="#predict-form" class="btn btn-primary text-secondary-content"
-					>Get Started</a
-				>
+				<div class="flex justify-center gap-4">
+					<a
+						href="#predict-form"
+						class="btn btn-accent text-white text-lg hover:scale-105 transition-transform"
+					>
+						Get Started
+					</a>
+					<a
+						href="#about"
+						class="btn btn-secondary text-white/80 text-lg hover:text-white hover:border-white transition-all"
+					>
+						Learn More
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
