@@ -14,7 +14,7 @@ plt.rc("xtick", labelsize=10)
 plt.rc("ytick", labelsize=10)
 
 # Define the path for saving figures
-IMAGES_PATH = Path("..") / "reports" / "figures"
+IMAGES_PATH = Path(__file__).resolve().parents[1] / "reports" / "figures"
 IMAGES_PATH.mkdir(parents=True, exist_ok=True)
 
 
