@@ -1,5 +1,5 @@
 <template>
-	<div class="hero bg-base-100 py-10">
+	<div class="hero bg-base-100 py-10 min-h-screen border-b border-accent">
 		<div class="text-center hero-content">
 			<div class="max-w-lg">
 				<h1 class="mb-4 text-4xl font-extrabold text-primary">

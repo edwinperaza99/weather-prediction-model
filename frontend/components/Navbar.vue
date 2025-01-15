@@ -1,8 +1,8 @@
 <template>
-	<header class="bg-base-300 shadow-md">
+	<header class="bg-base-300 border-b border-accent">
 		<nav class="navbar container mx-auto justify-between">
 			<!-- Left Section -->
-			<ul class="menu menu-horizontal space-x-2">
+			<ul class="navbar-start space-x-2">
 				<!-- GitHub Link -->
 				<li>
 					<a
@@ -24,58 +24,148 @@
 					</a>
 				</li>
 				<!-- Theme Dropdown -->
-				<li class="dropdown text-primary">
-					<label tabindex="0" class="btn btn-primary btn-sm">
-						Theme
-						<svg
-							width="12px"
-							height="12px"
-							class="inline-block h-3 w-3 fill-current ml-1"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 2048 2048"
-						>
-							<path
-								d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"
-							></path>
-						</svg>
-					</label>
-					<ul
-						tabindex="0"
-						class="dropdown-content menu bg-base-100 shadow-md rounded-box w-52 p-2"
-					>
-						<li
-							v-for="theme in themes"
-							:key="theme"
-							@click="changeTheme(theme)"
-						>
-							<button class="btn btn-ghost btn-sm w-full">
-								{{ theme }}
-							</button>
-						</li>
-					</ul>
-				</li>
 			</ul>
 
 			<!-- Right Section -->
-			<ul class="menu menu-horizontal space-x-2 md:space-x-4 text-secondary">
-				<li>
-					<nuxt-link
-						to="/"
-						class="hover:text-primary transition-colors duration-300"
+			<div class="navbar-end">
+				<!-- Desktop navbar -->
+				<div class="hidden md:flex text-secondary">
+					<ul class="menu menu-horizontal">
+						<li>
+							<nuxt-link
+								to="/"
+								class="hover:text-primary transition-colors duration-300"
+							>
+								Home
+							</nuxt-link>
+						</li>
+						<li>
+							<nuxt-link
+								to="/about"
+								class="hover:text-primary transition-colors duration-300"
+							>
+								About
+							</nuxt-link>
+						</li>
+						<li class="dropdown dropdown-hover dropdown-end text-primary">
+							<label tabindex="0" class="btn btn-primary btn-sm">
+								Theme
+								<svg
+									width="12px"
+									height="12px"
+									class="inline-block h-3 w-3 fill-current ml-1"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 2048 2048"
+								>
+									<path
+										d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"
+									></path>
+								</svg>
+							</label>
+							<ul
+								tabindex="0"
+								class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2"
+							>
+								<li
+									v-for="theme in themes"
+									:key="theme"
+									@click="changeTheme(theme)"
+								>
+									<button
+										class="btn btn-ghost btn-sm w-full"
+										:class="{
+											'text-accent': theme === currentTheme, // Add text-accent if selected
+										}"
+									>
+										{{ theme }}
+									</button>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<!-- mobile navbar -->
+				<div class="md:hidden text-primary">
+					<!-- Hamburger Menu Button -->
+					<button
+						class="btn btn-ghost"
+						@click="isMobileMenuOpen = !isMobileMenuOpen"
 					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h8m-8 6h16"
+							/>
+						</svg>
+					</button>
+
+				</div>
+			</div>
+		</nav>
+        <!-- Mobile Menu Items -->
+		<div v-if="isMobileMenuOpen" class="mt-3 p-4">
+			<ul class="space-y-2 text-center">
+				<li>
+					<nuxt-link to="/" class="block hover:text-primary transition-colors">
 						Home
 					</nuxt-link>
 				</li>
 				<li>
 					<nuxt-link
 						to="/about"
-						class="hover:text-primary transition-colors duration-300"
+						class="block hover:text-primary transition-colors"
 					>
 						About
 					</nuxt-link>
 				</li>
+				<li>
+					<li class="dropdown dropdown-hover text-primary">
+							<label tabindex="0" class="btn btn-primary btn-sm">
+								Select Theme
+								<!-- <svg
+									width="12px"
+									height="12px"
+									class="inline-block h-3 w-3 fill-current ml-1"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 2048 2048"
+								>
+									<path
+										d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"
+									></path>
+								</svg> -->
+							</label>
+							<ul
+								tabindex="0"
+								class="dropdown-content menu bg-base-200 shadow-md rounded-box w-52 p-2 z-50"
+							>
+								<li
+									v-for="theme in themes"
+									:key="theme"
+									@click="changeTheme(theme)"
+								>
+									<button
+										class="btn btn-ghost btn-sm w-full"
+										:class="{
+											'text-accent': theme === currentTheme, // Add text-accent if selected
+										}"
+									>
+										{{ theme }}
+									</button>
+								</li>
+							</ul>
+						</li>
+				</li>
 			</ul>
-		</nav>
+		</div>
 	</header>
 </template>
 
@@ -83,6 +173,7 @@
 	export default {
 		data() {
 			return {
+				isMobileMenuOpen: false,
 				themes: [
 					"light",
 					"dark",

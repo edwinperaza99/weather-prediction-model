@@ -1,7 +1,7 @@
 <template>
 	<Hero />
-	<div class="container mx-auto px-2">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+	<div class="container mx-auto px-2" id="predict-form">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
 			<div
 				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-4 border-base-300 flex flex-col flex-none"
 			>
