@@ -10,7 +10,7 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import train_test_split
 
-from src.plots import plot_model_results
+# from src.plots import plot_model_results
 
 
 def train_model(model, X, y, model_name, plot_results=True):
@@ -58,7 +58,8 @@ def train_model(model, X, y, model_name, plot_results=True):
         pickle.dump(model, file)
 
     if plot_results:
-        plot_model_results(y_test, y_pred, model_name)
+        # plot_model_results(y_test, y_pred, model_name)
+        print("Plotting results... if only I had the plot_model_results function!")
 
     print(f"{model_name} - Mean Squared Error (MSE): {mse:.4f}")
     print(f"{model_name} - Mean Absolute Error (MAE): {mae:.4f}")
