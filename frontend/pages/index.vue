@@ -1,7 +1,10 @@
 <template>
 	<Hero />
-	<div class="container mx-auto px-2" id="predict-form">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 py-6">
+	<div class="container mx-auto px-2">
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 py-6"
+			id="predict-form"
+		>
 			<div
 				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-2 border-accent flex flex-col flex-none"
 			>
@@ -119,6 +122,9 @@
 				/>
 			</LMap>
 		</div>
+
+		<!-- Predictions Timeline -->
+		<Predictions :predictions="predictions" :skeletonCount="3" />
 	</div>
 </template>
 
@@ -128,10 +134,10 @@
 			return {
 				month: "",
 				year: "",
-				longitude: 0,
-				latitude: 0,
-				zoom: 5,
-				mapCenter: [0, 0], // Map center
+				longitude: -0.1276, // Default: London (UK)
+				latitude: 51.5074, // Default: London (UK)
+				zoom: 10,
+				mapCenter: [51.5074, -0.1276], // Default: London (UK)
 				predictions: null, // To store API response
 				loading: false, // Loading state
 				error: null, // Error message
@@ -146,6 +152,25 @@
 			},
 		},
 		methods: {
+			async setUserLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(
+						(position) => {
+							this.latitude = position.coords.latitude;
+							this.longitude = position.coords.longitude;
+							this.mapCenter = [this.latitude, this.longitude];
+						},
+						() => {
+							// If the user denies access, the default (Los Angeles) is used.
+							console.warn(
+								"Geolocation access denied. Using default location."
+							);
+						}
+					);
+				} else {
+					console.warn("Geolocation is not supported by this browser.");
+				}
+			},
 			async handleSubmit() {
 				console.log("Form Submitted", {
 					month: this.month,
@@ -178,6 +203,12 @@
 						"Predictions:",
 						JSON.parse(JSON.stringify(this.predictions))
 					);
+
+					// Scroll to predictions section
+					this.$nextTick(() => {
+						const predictionsSection = document.getElementById("predictions");
+						predictionsSection?.scrollIntoView({ behavior: "smooth" });
+					});
 				} catch (error) {
 					console.error("Error during API call:", error);
 					this.error = error.message;
