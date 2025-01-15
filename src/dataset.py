@@ -1,10 +1,17 @@
+import os
 from pathlib import Path
 
 import pandas as pd
 import redivis
+from dotenv import load_dotenv
 
 RAW_DATA_PATH = Path("..") / "data" / "raw"
 RAW_DATA_PATH.mkdir(parents=True, exist_ok=True)
+
+load_dotenv()
+api_token = os.getenv("REDIVIS_API_TOKEN")
+if not api_token:
+    raise ValueError("REDIVIS_API_TOKEN not found in environment")
 
 
 def load_data_redivis(save=True):
@@ -30,8 +37,10 @@ def load_data_redivis(save=True):
 
     return df
 
+
 PROCESSED_DATA_PATH = Path("..") / "data" / "processed"
 PROCESSED_DATA_PATH.mkdir(parents=True, exist_ok=True)
+
 
 def load_preprocessed_data(processed_file_name="global_temperature_final.csv"):
     """
