@@ -3,9 +3,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 
-from src.dataset import load_data_redivis, load_preprocessed_data
-from src.features import preprocess_data
-from src.modeling.train import train_model
+from dataset import load_data_redivis, load_preprocessed_data
+from features import preprocess_data
+from modeling.train import train_model
 
 # Load preprocessed data or raw data
 df = load_preprocessed_data()
