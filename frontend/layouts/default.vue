@@ -1,8 +1,6 @@
 <template>
-	<div class="bg-slate-400 min-h-screen">
+	<div class="bg-base-200 min-h-screen">
 		<Navbar />
-		<main class="container mx-auto">
-			<slot />
-		</main>
+		<slot />
 	</div>
 </template>
