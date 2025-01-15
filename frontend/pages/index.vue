@@ -1,7 +1,7 @@
 <template>
 	<Hero />
 	<div class="container mx-auto px-2" id="predict-form">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 py-6">
 			<div
 				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-2 border-accent flex flex-col flex-none"
 			>
@@ -22,7 +22,7 @@
 						</label>
 						<select
 							id="month"
-							class="select select-bordered w-full bg-base-200"
+							class="select select-bordered select-accent w-full bg-base-200"
 							v-model="month"
 							required
 						>
@@ -50,10 +50,13 @@
 						<input
 							type="number"
 							id="year"
-							class="input input-bordered w-full bg-base-200"
+							class="input input-bordered input-accent w-full bg-base-200"
 							placeholder="Enter Year (e.g., 2025)"
 							v-model="year"
 							required
+							min="1000"
+							max="9999"
+							inputmode="numeric"
 						/>
 					</div>
 
@@ -67,10 +70,11 @@
 						<input
 							type="number"
 							id="longitude"
-							class="input input-bordered w-full bg-base-200"
+							class="input input-bordered input-accent w-full bg-base-200"
 							placeholder="Enter Longitude"
 							v-model="longitude"
 							@input="updateMapCenter"
+							step="any"
 							required
 						/>
 					</div>
@@ -85,10 +89,11 @@
 						<input
 							type="number"
 							id="latitude"
-							class="input input-bordered w-full bg-base-200"
+							class="input input-bordered input-accent w-full bg-base-200"
 							placeholder="Enter Latitude"
 							v-model="latitude"
 							@input="updateMapCenter"
+							step="any"
 							required
 						/>
 					</div>
@@ -127,6 +132,9 @@
 				latitude: 0,
 				zoom: 5,
 				mapCenter: [0, 0], // Map center
+				predictions: null, // To store API response
+				loading: false, // Loading state
+				error: null, // Error message
 			};
 		},
 		watch: {
@@ -138,14 +146,44 @@
 			},
 		},
 		methods: {
-			handleSubmit() {
+			async handleSubmit() {
 				console.log("Form Submitted", {
 					month: this.month,
 					year: this.year,
 					longitude: this.longitude,
 					latitude: this.latitude,
 				});
-				// TODO: Make API request to the backend
+				try {
+					const response = await fetch("http://127.0.0.1:5000/predict", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded",
+						},
+						body: new URLSearchParams({
+							year: this.year,
+							latitude: this.latitude,
+							longitude: this.longitude,
+							month: this.month,
+						}),
+					});
+
+					if (!response.ok) {
+						const errorData = await response.json();
+						throw new Error(errorData.error || "Failed to fetch predictions");
+					}
+
+					const data = await response.json();
+					this.predictions = data.predictions;
+					console.log(
+						"Predictions:",
+						JSON.parse(JSON.stringify(this.predictions))
+					);
+				} catch (error) {
+					console.error("Error during API call:", error);
+					this.error = error.message;
+				} finally {
+					this.loading = false;
+				}
 			},
 			updateMapCenter() {
 				this.mapCenter = [this.latitude, this.longitude];

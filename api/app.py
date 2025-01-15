@@ -2,13 +2,12 @@ import logging
 
 from flasgger import Swagger
 from flask import Flask, jsonify, request
-
-# from flask_cors import CORS
+from flask_cors import CORS
 from utils import load_models, make_predictions
 
 app = Flask(__name__)
 # NOTE: probably won't need CORS if hosting from same EC2 instance
-# CORS(app)
+CORS(app)
 Swagger(app)
 
 # Load models on startup
