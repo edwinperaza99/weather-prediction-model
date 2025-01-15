@@ -1,11 +1,11 @@
 # Use an official Python image as the base
-FROM python:3.10.15-bullseye
+FROM python:3.10-slim-bullseye
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the requirements file
-COPY requirements.txt /app/requirements.txt
+COPY src/requirements.txt /app/requirements.txt
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r /app/requirements.txt
