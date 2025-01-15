@@ -1,4 +1,5 @@
 import pickle
+from pathlib import Path
 
 import numpy as np
 from sklearn.metrics import (
@@ -12,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from src.plots import plot_model_results
 
 
-def train_model(model, X, y, model_name):
+def train_model(model, X, y, model_name, plot_results=True):
     """
     Trains a given machine learning model, evaluates its performance, and saves the trained model to a file.
 
@@ -47,12 +48,17 @@ def train_model(model, X, y, model_name):
     rmse = np.sqrt(mse)
     r2 = r2_score(y_test, y_pred)
 
+    # Ensure the `models` directory exists
+    models_dir = Path(__file__).resolve().parents[2] / "models"
+    models_dir.mkdir(parents=True, exist_ok=True)
+
     # Save the model
-    file_path = f"../models/{model_name.replace(' ', '_')}.sav"
+    file_path = models_dir / f"{model_name.replace(' ', '_')}.sav"
     with open(file_path, "wb") as file:
         pickle.dump(model, file)
 
-    plot_model_results(y_test, y_pred, model_name)
+    if plot_results:
+        plot_model_results(y_test, y_pred, model_name)
 
     print(f"{model_name} - Mean Squared Error (MSE): {mse:.4f}")
     print(f"{model_name} - Mean Absolute Error (MAE): {mae:.4f}")

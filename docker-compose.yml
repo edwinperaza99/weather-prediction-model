@@ -10,3 +10,14 @@ services:
     volumes:
       - ./api:/app/api
       - ./models:/app/models
+
+  build-models:
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    container_name: build-models
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./src:/app/src
+    restart: "no"
