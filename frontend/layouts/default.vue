@@ -1,13 +1,8 @@
 <template>
-	<div>
-		<header>
-			<nav>
-				<ul>
-					<li><nuxt-link to="/">Home</nuxt-link></li>
-					<li><nuxt-link to="/about">About</nuxt-link></li>
-				</ul>
-			</nav>
-		</header>
-		<slot />
+	<div class="bg-slate-400 min-h-screen">
+		<Navbar />
+		<main class="container mx-auto">
+			<slot />
+		</main>
 	</div>
 </template>
