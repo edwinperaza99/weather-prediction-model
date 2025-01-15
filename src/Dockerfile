@@ -15,5 +15,8 @@ COPY src /app/src
 COPY models /app/models
 COPY data /app/data
 
+# Set the PYTHONPATH environment variable
+ENV PYTHONPATH=/app
+
 # Ensure the virtual environment is active and run the build_models script
 CMD ["python", "/app/src/build_models.py"]
