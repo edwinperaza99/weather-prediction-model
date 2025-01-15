@@ -15,7 +15,8 @@ services:
     build:
       context: .
       dockerfile: src/Dockerfile
-    environment: -REDIVIS_API_TOKEN=${{ secrets.REDIVIS_API_TOKEN }}
+    environment:
+      REDIVIS_API_TOKEN: ${REDIVIS_API_TOKEN}
     container_name: build-models
     volumes:
       - ./models:/app/models
