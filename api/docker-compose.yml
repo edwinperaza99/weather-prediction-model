@@ -1,0 +1,12 @@
+services:
+  weather-prediction-api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: weather-prediction-api
+    ports:
+      - "8001:8000" # Map port 8000 in the container to 8001 on the host
+    restart: unless-stopped
+    volumes:
+      - ./api:/app/api
+      - ./models:/app/models
