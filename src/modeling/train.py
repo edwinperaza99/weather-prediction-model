@@ -10,7 +10,7 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import train_test_split
 
-from src.plots import plot_model_results
+from ..plots import plot_model_results
 
 
 def train_model(model, X, y, model_name, plot_results=True):
