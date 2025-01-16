@@ -2,6 +2,9 @@ FROM python:3.10.15-bullseye
 
 WORKDIR /app
 
+# Set the PYTHONPATH environment variable to include the /app/api directory
+ENV PYTHONPATH=/app/api
+
 COPY api/requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir -r /app/requirements.txt
