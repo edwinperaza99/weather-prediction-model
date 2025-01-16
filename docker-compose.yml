@@ -4,16 +4,12 @@ services:
       context: .
       dockerfile: api/Dockerfile
     container_name: weather-prediction-api
+    restart: "no"
     ports:
       - "8001:8000" # Map port 8000 in the container to 8001 on the host
     volumes:
       - ./api:/app/api
       - ./models:/app/models
-    deploy:
-      resources:
-        reservations:
-          memory: "128M"
-    # restart: unless-stopped
 
   build-models:
     build:
@@ -27,8 +23,3 @@ services:
       - ./data:/app/data
       - ./src:/app/src
     restart: "no"
-    deploy:
-      resources:
-        limits:
-          cpus: "0.25" # Limit to 25% of a single CPU
-          memory: "256M" # Limit memory to 256 MB
