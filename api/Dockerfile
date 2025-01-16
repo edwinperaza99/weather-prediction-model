@@ -17,4 +17,4 @@ COPY api /app/api
 EXPOSE 8000
 
 # Run the application using Gunicorn with Uvicorn workers
-CMD ["gunicorn", "-w", "4", "api.app:app", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "-w", "1", "api.app:app", "--bind", "0.0.0.0:8000"]
