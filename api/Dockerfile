@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Copy only the `api` and `models` directories
 COPY api /app/api
-COPY models /app/models
+# COPY models /app/models
 
 # Expose the port for Gunicorn
 EXPOSE 8000
