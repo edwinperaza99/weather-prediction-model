@@ -1,23 +1,10 @@
 import logging
 
-from flasgger import Swagger
-from flask import Flask, jsonify, request
-from flask_cors import CORS
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from utils import load_models, make_predictions
 
-app = Flask(__name__)
-# NOTE: probably won't need CORS if hosting from same EC2 instance
-CORS(app)
-Swagger(app)
-
-# Load models on startup
-logging.info("Loading models...")
-try:
-    MODELS = load_models()
-    logging.info("Models loaded successfully.")
-except FileNotFoundError as e:
-    logging.error(f"Error loading models: {e}")
-    MODELS = {}
+app = FastAPI()
 
 # Configure logging
 logging.basicConfig(
@@ -30,73 +17,75 @@ logging.basicConfig(
 )
 
 
-@app.route("/predict", methods=["POST"])
-def predict():
+# Define a model for the input data
+class PredictionRequest(BaseModel):
+    year: int
+    latitude: float
+    longitude: float
+    month: int
+
+
+# Load models on startup
+logging.info("Loading models...")
+try:
+    MODELS = load_models()
+    logging.info("Models loaded successfully.")
+except FileNotFoundError as e:
+    logging.error(f"Error loading models: {e}")
+    MODELS = {}
+
+
+@app.post("/predict")
+async def predict(request: PredictionRequest):
     """
-    Make predictions using all models.
-    ---
-    parameters:
-      - name: year
-        in: formData
-        type: integer
-        required: true
-        description: Year for prediction (e.g., 2025)
-      - name: latitude
-        in: formData
-        type: number
-        required: true
-        description: Latitude of the location (e.g., 37.7749)
-      - name: longitude
-        in: formData
-        type: number
-        required: true
-        description: Longitude of the location (e.g., -122.4194)
-      - name: month
-        in: formData
-        type: integer
-        required: true
-        description: Month of the year (1-12) (e.g., 5)
-    responses:
-      200:
-        description: Predictions for all models
-        schema:
-          type: object
-          properties:
-            predictions:
-              type: array
-              items:
-                type: object
-                properties:
-                  model:
-                    type: string
-                    description: The name of the model
-                  prediction:
-                    type: number
-                    description: The predicted value
+    Predicts weather data based on the input features using various machine learning models.
+
+    This endpoint accepts the year, latitude, longitude, and month as inputs and generates predictions
+    using multiple models like KNN, Random Forest, and Linear Regression.
+
+    **Request Body Example:**
+    ```json
+    {
+      "year": 2025,
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "month": 5
+    }
+    ```
+
+    **Response Example:**
+    ```json
+    {
+      "predictions": [
+        {
+          "model": "KNN M1",
+          "prediction": 22.5
+        },
+        {
+          "model": "Random Forest M1",
+          "prediction": 21.8
+        },
+        {
+          "model": "Linear Regression M1",
+          "prediction": 23.1
+        }
+      ]
+    }
+    ```
+
+    - **year**: The year for prediction (e.g., 2025).
+    - **latitude**: The latitude of the location (e.g., 37.7749).
+    - **longitude**: The longitude of the location (e.g., -122.4194).
+    - **month**: The month of the year (1-12) for which the prediction is to be made (e.g., 5).
+
+    Responses:
+        - 200: Predictions successfully generated for all models.
+        - 400: Missing or invalid input parameters.
+        - 500: Internal server error during prediction.
     """
     try:
-        # Extract features from the request
-        year = request.form.get("year", type=int)
-        latitude = request.form.get("latitude", type=float)
-        longitude = request.form.get("longitude", type=float)
-        month = request.form.get("month", type=int)
-
-        # Validate inputs
-        missing_fields = []
-        if year is None:
-            missing_fields.append("year")
-        if latitude is None:
-            missing_fields.append("latitude")
-        if longitude is None:
-            missing_fields.append("longitude")
-        if month is None:
-            missing_fields.append("month")
-
-        if missing_fields:
-            return jsonify({"error": f"Missing fields: {', '.join(missing_fields)}"}), 400
-
         # Prepare features as a list
-        features = [year, latitude, longitude, month]
+        features = [request.year, request.latitude, request.longitude, request.month]
 
         # Make predictions using all models
         raw_predictions = make_predictions(MODELS, features)
@@ -111,12 +100,14 @@ def predict():
         ]
 
         logging.info(f"Predictions generated for input {features}: {formatted_predictions}")
-        return jsonify({"predictions": formatted_predictions})
+        return {"predictions": formatted_predictions}
 
     except Exception as e:
         logging.error(f"Error during prediction: {e}", exc_info=True)
-        return jsonify({"error": str(e)}), 500
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)

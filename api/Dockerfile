@@ -1,4 +1,4 @@
-FROM python:3.10.15-bullseye
+FROM python:3.10-slim-bullseye
 
 WORKDIR /app
 
@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY api /app/api
 # COPY models /app/models
 
-# Expose the port for Gunicorn
+# Expose the port
 EXPOSE 8000
 
-# Run the application using Gunicorn with Uvicorn workers
-CMD ["gunicorn", "-w", "1", "api.app:app", "--bind", "0.0.0.0:8000"]
+# Run the application
+CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

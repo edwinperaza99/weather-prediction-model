@@ -6,9 +6,8 @@ services:
     container_name: weather-prediction-api
     restart: "no"
     ports:
-      - "8001:8000" # Map port 8000 in the container to 8001 on the host
+      - "9000:8000" # Map port 8000 in the container to 9000 on the host
     volumes:
-      - ./api:/app/api
       - ./models:/app/models
 
   build-models:
