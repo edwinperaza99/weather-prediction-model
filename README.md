@@ -6,6 +6,68 @@
 
 Machine learning model to predict the weather. It leverages historical weather data to forecast future weather conditions.
 
+---
+
+## Project Overview
+
+This project is designed to:
+
+- Analyze historical climate data and extract meaningful trends.
+- Train machine learning models to predict Earth surface temperatures based on spatial and temporal features.
+- Provide an interactive web application for users to test predictions using trained models.
+
+---
+
+## Key Components
+
+### **1. Frontend**
+
+- Built using **Nuxt.js** with **TailwindCSS** for responsive design, extended by **DaisyUI** for modern components.
+- Features a user-friendly interface for users to input location and time data (latitude, longitude, year, and month) and receive predictions.
+- Deployed on **Vercel** for fast and scalable hosting.
+- Key files:
+  - `frontend/nuxt.config.ts`: Configuration for the frontend application.
+  - `frontend/pages/`: Main pages, including `index.vue` for predictions and `about.vue` for project details.
+  - `frontend/components/`: Reusable UI components like `Hero.vue`, `Footer.vue`, and `Predictions.vue`.
+
+### **2. Backend**
+
+- Developed using **FastAPI** for serving predictions through RESTful endpoints.
+- Handles model loading, input validation, and prediction generation.
+- Containerized with **Docker** and deployed on **Google Cloud Platform** (GCP) using a Virtual Machine (VM).
+- Key files:
+  - `api/app.py`: Main FastAPI application logic.
+  - `api/utils.py`: Helper functions for data processing and prediction.
+  - `docker-compose.yml`: Configuration for deploying the backend with Docker.
+
+### **3. Machine Learning**
+
+- Models built using **scikit-learn** include:
+  - Random Forest (highest accuracy with R² score of 0.9857).
+  - K-Nearest Neighbor (KNN).
+  - Support Vector Regression (SVR).
+  - Linear Regression.
+- Key workflows:
+  - `notebooks/`: Jupyter notebooks for data preprocessing, modeling, and evaluation.
+  - `src/modeling/`: Scripts for training and running predictions.
+- Trained models are serialized and stored in the `models/` directory.
+
+### **4. Data Handling**
+
+- Historical climate data sourced from the [Berkeley Earth Surface Temperature dataset](https://berkeleyearth.org/data/).
+- Data pipeline processes raw data into clean, usable formats for modeling.
+- Key files:
+  - `data/processed/global_temperature_final.csv`: Final processed dataset.
+  - `src/dataset.py`: Script for data loading and preparation.
+
+### **5. Deployment**
+
+- **Backend**: Hosted on GCP with Docker for scalability and reliability.
+- **Frontend**: Deployed on Vercel.
+- CI/CD: Automated deployment pipelines configured via GitHub Actions (`.github/workflows/backend-deploy.yml`).
+
+---
+
 ## Key Notebooks
 
 Below is an overview of the most significant notebooks:
@@ -39,6 +101,21 @@ This notebook presents a cleaner and streamlined version of the workflow:
 ├── LICENSE            <- Open-source license if one is chosen
 ├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
+├── frontend/          <- Nuxt.js frontend for user interaction.
+│   ├── pages/
+│   ├── components/
+│   ├── assets/
+│   ├── nuxt.config.ts
+│   └── package.json
+├── api/               <- Backend API built with FastAPI.
+│   ├── app.py
+│   ├── utils.py
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── .dockerignore
+├── .github/           <- CI/CD workflows for automated deployment.
+│    └── workflows/
+│        └── backend-deploy.yml
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
