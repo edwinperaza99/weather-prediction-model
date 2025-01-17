@@ -15,7 +15,7 @@
 						Get Started
 					</a>
 					<a
-						href="#about"
+						href="/about"
 						class="btn btn-secondary text-white/80 text-lg hover:text-white hover:border-white transition-all"
 					>
 						Learn More
