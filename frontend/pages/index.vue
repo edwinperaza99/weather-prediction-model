@@ -1,7 +1,7 @@
 <template>
 	<Hero />
 	<div class="border-b-2 border-accent">
-		<div class="container mx-auto px-2 py-6 md:py-8" id="predict-form">
+		<div class="container mx-auto px-4 py-6 md:py-8" id="predict-form">
 			<h2 class="text-primary text-4xl font-semibold mb-1">
 				Test the models<span class="text-secondary">.</span>
 			</h2>

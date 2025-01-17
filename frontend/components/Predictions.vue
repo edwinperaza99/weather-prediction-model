@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-base-100">
-		<div class="container mx-auto pt-6 min-h-screen" id="predictions">
+		<div class="container mx-auto pt-6 min-h-screen px-4" id="predictions">
 			<h3 class="text-4xl font-semibold mb-4 text-primary">
 				Predictions from My Models<span class="text-secondary">.</span>
 			</h3>
@@ -52,10 +52,10 @@
 							<hr class="bg-accent" />
 							<div class="timeline-middle">
 								<p class="font-accent font-thin text-center text-sm">
-									Note: Predictions from the Random Forest model are currently
-									unavailable due to limited storage space on the virtual
-									machine. Other models are unaffected and available for
-									testing.
+									<strong>Note:</strong> Predictions from the Random Forest
+									model are currently unavailable due to limited storage space
+									on the virtual machine. Other models are unaffected and
+									available for testing.
 								</p>
 							</div>
 						</li>

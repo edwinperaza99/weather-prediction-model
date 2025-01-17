@@ -20,7 +20,6 @@
 						/>
 					</svg>
 				</a>
-				<!-- Theme Dropdown -->
 			</div>
 
 			<!-- Right Section -->
@@ -64,7 +63,7 @@
 							</label>
 							<ul
 								tabindex="0"
-								class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 absolute z-[9000]"
+								class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000]"
 							>
 								<li
 									v-for="theme in themes"
@@ -162,7 +161,7 @@
 					</label>
 					<ul
 						tabindex="0"
-						class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000] absolute text-base-content"
+						class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000] text-base-content"
 					>
 						<li
 							v-for="theme in themes"
