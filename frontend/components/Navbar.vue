@@ -17,7 +17,7 @@
             <div class="navbar-end">
                 <!-- Desktop navbar -->
                 <div class="hidden md:flex text-base-content">
-                    <ul class="menu menu-horizontal">
+                    <ul class="menu menu-horizontal space-x-0.5">
                         <li>
                             <nuxt-link to="/" class="hover:text-primary transition-colors duration-300">
                                 Home
@@ -28,8 +28,8 @@
                                 About
                             </nuxt-link>
                         </li>
-                        <li class="dropdown dropdown-hover dropdown-end text-primary">
-                            <label tabindex="0" class="btn btn-primary btn-sm relative">
+                        <li class="dropdown dropdown-hover dropdown-end text-base-content">
+                            <label tabindex="0" class="bg-primary text-primary-content hover:bg-primary hover:text-accent relative">
                                 Theme
                                 <svg width="12px" height="12px" class="inline-block h-3 w-3 fill-current ml-1"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
@@ -84,7 +84,7 @@
                 </li>
                 <li>
                 <li class="dropdown dropdown-hover text-primary relative">
-                    <label tabindex="0" class="btn btn-primary btn-sm">
+                    <label tabindex="0" class="btn btn-primary btn-sm text-primary-content hover:text-accent">
                         Select Theme
                         <!-- <svg
 									width="12px"
@@ -98,7 +98,7 @@
 									></path>
 								</svg> -->
                     </label>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-200 shadow-md rounded-box w-52 p-2 z-[9000] absolute">
+                    <ul tabindex="0" class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000] absolute text-base-content">
                         <li v-for="theme in themes" :key="theme" @click="changeTheme(theme)">
                             <button class="btn btn-ghost btn-sm w-full" :class="{
                                 'text-accent': theme === currentTheme, // Add text-accent if selected

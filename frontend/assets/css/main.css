@@ -5,3 +5,17 @@
 html {
 	scroll-behavior: smooth;
 }
+
+@layer utilities {
+	.min-h-viewport {
+		min-height: calc(
+			100vh - 4rem
+		); /* Fallback for browsers that don't support dvh */
+	}
+
+	@supports (height: 100dvh) {
+		.min-h-viewport {
+			min-height: calc(100dvh - 4rem); /* Uses dvh if supported */
+		}
+	}
+}

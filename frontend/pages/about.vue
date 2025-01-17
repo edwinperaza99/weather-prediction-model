@@ -1,6 +1,6 @@
 <template>
-	<div id="about" class="py-10 bg-base-100">
-		<div class="container mx-auto px-4">
+	<div id="about" class="pt-6 md:pt-16 bg-base-100">
+		<div class="container mx-auto px-2">
 			<!-- Header Section -->
 			<div
 				class="flex flex-col md:flex-row items-center justify-between mb-12 gap-1"
