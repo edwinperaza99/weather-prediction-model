@@ -14,7 +14,7 @@ def load_models():
     """
     model_names = [
         "KNN M1",
-        "Random Forest M1",
+        # "Random Forest M1",
         "Linear Regression M1",
     ]
 
