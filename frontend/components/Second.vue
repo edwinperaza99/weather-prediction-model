@@ -1,7 +1,5 @@
 <template>
-	<div
-		class="max-w-2xl w-full aspect-square flex items-center justify-center rounded-full"
-	>
+	<div class="max-w-2xl w-full aspect-square">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
 			<g id="freepik--Floor--inject-7">
 				<ellipse
