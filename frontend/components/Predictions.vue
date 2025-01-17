@@ -48,7 +48,7 @@
 		data() {
 			return {
 				// Fixed list of model names
-				modelNames: ["KNN", "Random Forest", "Linear Regression"],
+				modelNames: ["KNN", "Linear Regression", "Random Forest"],
 			};
 		},
 	};

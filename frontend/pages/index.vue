@@ -188,7 +188,7 @@
 					};
 
 					// Send the data as a JSON payload to the API
-					const response = await fetch("http://127.0.0.1:9000/predict", {
+					const response = await fetch("http://34.83.214.37:9000/predict", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json", // Set Content-Type to application/json
