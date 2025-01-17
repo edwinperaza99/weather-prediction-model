@@ -179,17 +179,21 @@
 					latitude: this.latitude,
 				});
 				try {
-					const response = await fetch("http://127.0.0.1:5000/predict", {
+					// Create a JSON object with the form data
+					const requestData = {
+						year: this.year,
+						latitude: this.latitude,
+						longitude: this.longitude,
+						month: this.month,
+					};
+
+					// Send the data as a JSON payload to the API
+					const response = await fetch("http://127.0.0.1:9000/predict", {
 						method: "POST",
 						headers: {
-							"Content-Type": "application/x-www-form-urlencoded",
+							"Content-Type": "application/json", // Set Content-Type to application/json
 						},
-						body: new URLSearchParams({
-							year: this.year,
-							latitude: this.latitude,
-							longitude: this.longitude,
-							month: this.month,
-						}),
+						body: JSON.stringify(requestData), // Convert the data to JSON format
 					});
 
 					if (!response.ok) {
