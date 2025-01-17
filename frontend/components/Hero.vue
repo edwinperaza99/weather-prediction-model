@@ -12,7 +12,7 @@
 						href="#predict-form"
 						class="btn btn-accent text-white hover:text-white/80 text-lg hover:scale-105 transition-transform"
 					>
-						Get Started
+						Try It Out
 					</a>
 					<a
 						href="/about"
@@ -22,7 +22,7 @@
 					</a>
 				</div>
 			</div>
-			<First />
+			<Second />
 		</div>
 	</div>
 </template>

@@ -69,15 +69,15 @@
 					width="158.33"
 					height="171.1"
 					transform="translate(297.26 330.65) rotate(180)"
-					class="fill-base-content"
+					class="fill-base-300"
 				></rect>
 				<polygon
 					points="74.55 250.87 230.17 250.87 230.17 258.33 69.58 258.33 74.55 250.87"
-					class="fill-base-content/70"
+					class="fill-base-300/70"
 				></polygon>
 				<polygon
 					points="61.01 250.87 219.33 250.87 214.36 258.33 56.03 258.33 61.01 250.87"
-					class="fill-base-content"
+					class="fill-base-100"
 				></polygon>
 				<rect
 					x="70.19"
@@ -85,7 +85,7 @@
 					width="156.88"
 					height="144.11"
 					transform="translate(313.96 16.69) rotate(90)"
-					class="fill-neutral/10"
+					class="fill-base-100/10"
 				></rect>
 				<polygon
 					points="196.41 243.76 140.75 86.89 121.05 86.89 176.71 243.76 196.41 243.76"
@@ -93,7 +93,7 @@
 				></polygon>
 				<path
 					d="M217.39,238.78a.55.55,0,0,0,.55-.55V91.51a.55.55,0,0,0-.55-.54.54.54,0,0,0-.54.54V238.23A.55.55,0,0,0,217.39,238.78Z"
-					class="fill-base-content"
+					class="fill-base-100"
 				></path>
 				<polygon
 					points="154.48 243.76 98.82 86.89 91.14 86.89 146.8 243.76 154.48 243.76"
@@ -109,27 +109,27 @@
 				></rect>
 				<polygon
 					points="67.78 100.61 223.41 100.61 224.06 89.65 68.44 89.65 67.78 100.61"
-					class="fill-accent/50"
+					class="fill-primary/10"
 				></polygon>
 				<polygon
 					points="67.78 118.62 223.41 118.62 224.06 107.66 68.44 107.66 67.78 118.62"
-					class="fill-accent/50"
+					class="fill-primary/10"
 				></polygon>
 				<polygon
 					points="67.78 136.63 223.41 136.63 224.06 125.68 68.44 125.68 67.78 136.63"
-					class="fill-accent/50"
+					class="fill-primary/10"
 				></polygon>
 				<polygon
 					points="67.78 154.64 223.41 154.64 224.06 143.69 68.44 143.69 67.78 154.64"
-					class="fill-accent/50"
+					class="fill-primary/10"
 				></polygon>
 				<polygon
 					points="67.78 172.66 223.41 172.66 224.06 161.7 68.44 161.7 67.78 172.66"
-					class="fill-accent/50"
+					class="fill-primary/10"
 				></polygon>
 				<polygon
 					points="67.78 190.67 223.41 190.67 224.06 179.71 68.44 179.71 67.78 190.67"
-					class="fill-accent/50"
+					class="fill-primary/10"
 				></polygon>
 				<rect
 					x="301.37"
@@ -303,7 +303,7 @@
 					cy="416.24"
 					rx="193.89"
 					ry="11.32"
-					class="fill-primary-content"
+					class="fill-base-300/90"
 				></ellipse>
 			</g>
 			<g id="freepik--weather-widget--inject-34">
@@ -551,7 +551,7 @@
 				</g>
 				<path
 					d="M361.35,174.62c-.59-.77-2.2,1-3.41,3.23,1.68,3.32,3.8,7,5.68,10.14C364.79,181.92,362.88,176.57,361.35,174.62Z"
-					style="fill: #407bff; opacity: 0.5"
+					class="fill-secondary-content/50"
 				></path>
 				<path
 					d="M324.7,162.53s-7.69,8.69-.43,62.47h38.66c.27-5.93-3.46-34.88,2.27-62.85a100.45,100.45,0,0,0-12.95-1.63,140.61,140.61,0,0,0-16.43,0A72.16,72.16,0,0,0,324.7,162.53Z"
@@ -563,7 +563,7 @@
 				></path>
 				<path
 					d="M321.43,177.32a156,156,0,0,0,0,19.3c4.92-3.16,9.44-11.57,9-17.13Z"
-					style="fill: #407bff; opacity: 0.5"
+					class="fill-secondary-content/50"
 				></path>
 				<polygon
 					points="177.98 163.59 176.81 165.49 167.59 159.08 168.19 158.12 177.98 163.59"

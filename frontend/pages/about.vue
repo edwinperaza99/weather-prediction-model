@@ -6,16 +6,16 @@
 				class="flex flex-col md:flex-row items-center justify-between mb-12 gap-1"
 			>
 				<div class="md:w-3/5">
-					<h1 class="text-4xl font-bold text-primary">Weatheria</h1>
+					<h1 class="text-6xl font-bold text-primary">Weatheria</h1>
 					<div class="flex items-center gap-2 mb-4">
 						<p class="text-xs text-secondary">ウェザリア (Wezaria)</p>
-						<button
+						<!-- <button
 							class="inline"
 							@click="playPronunciation"
 							aria-label="Play pronunciation"
 						>
 							🔊
-						</button>
+						</button> -->
 					</div>
 					<p class="text-content leading-relaxed">
 						The name is inspired by a fictional sky island from the show
@@ -38,7 +38,7 @@
 			<!-- Project Overview -->
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					What Does Weatheria Do?
+					What Does Weatheria Do<span class="text-accent">?</span>
 				</h2>
 				<p class="text-content leading-relaxed">
 					Weatheria predicts Earth surface temperatures using advanced machine
@@ -53,27 +53,40 @@
 			<!-- Technical Details -->
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					How It Was Built
+					How It Was Built<span class="text-accent">.</span>
 				</h2>
 				<ul class="list-disc list-inside text-content leading-relaxed">
 					<li>
-						<strong>Frontend:</strong> Built with Nuxt.js and styled using
-						DaisyUI for a responsive and visually engaging user interface.
+						<strong>Frontend:</strong> Built using Nuxt.js with TailwindCSS for
+						styling and extended with DaisyUI components for a modern,
+						responsive design. The frontend is deployed on Vercel.
 					</li>
 					<li>
-						<strong>Backend:</strong> Developed using FastAPI to process
-						predictions by loading trained machine learning models serialized
-						with Pickle.
+						<strong>Backend:</strong> Hosted on Google Cloud's Virtual Machine
+						(VM) and containerized using Docker for easy scalability and
+						reliable deployment. The backend was developed with FastAPI,
+						responsible for serving predictions from pre-trained machine
+						learning models.
 					</li>
 					<li>
-						<strong>Machine Learning:</strong> Models include Random Forest,
-						K-Nearest Neighbor, Support Vector Regression (SVR), and Linear
-						Regression. The Random Forest model achieved the highest R² score of
+						<strong>Machine Learning:</strong> The models were built using
+						Python and the Scikit-learn library. Four algorithms were used:
+						Random Forest, K-Nearest Neighbor (KNN), Support Vector Regression
+						(SVR), and Linear Regression. The Random Forest model achieved the
+						highest accuracy with an R² score of
 						<span class="text-accent">0.9857</span>.
 					</li>
 					<li>
-						<strong>Deployment:</strong> Hosted on AWS using Docker for seamless
-						scalability and reliability.
+						<strong>Images and Illustrations:</strong> The visuals used in the
+						project are sourced from
+						<a
+							href="https://storyset.com/"
+							class="text-primary hover:text-accent"
+							target="_blank"
+							rel="noopener noreferrer"
+							>Storyset</a
+						>, under their license agreement. Special thanks for providing
+						high-quality illustrations to enhance the user interface.
 					</li>
 				</ul>
 			</div>
@@ -81,7 +94,7 @@
 			<!-- Dataset and Data Handling -->
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					Dataset and Data Handling
+					Dataset and Data Handling<span class="text-accent">.</span>
 				</h2>
 				<p class="text-content leading-relaxed mb-4">
 					The dataset used in this project is sourced from the
@@ -120,7 +133,7 @@
 			<!-- Machine Learning Models -->
 			<div class="mb-12">
 				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					Machine Learning Models and Results
+					Machine Learning Models and Results<span class="text-accent">.</span>
 				</h2>
 				<p class="text-content leading-relaxed mb-4">
 					Four machine learning algorithms were employed to analyze the data:
@@ -233,7 +246,9 @@
 
 			<!-- Results -->
 			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">Key Results</h2>
+				<h2 class="text-3xl font-semibold text-secondary mb-4">
+					Key Results<span class="text-accent">.</span>
+				</h2>
 				<p class="text-content leading-relaxed mb-6">
 					The project analyzed global climate data to predict temperature trends
 					with remarkable accuracy. Below is a summary of the performance of the
@@ -275,8 +290,10 @@
 			</div>
 
 			<!-- About Me -->
-			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">About Me</h2>
+			<div class="pb-12">
+				<h2 class="text-3xl font-semibold text-secondary mb-4">
+					About Me<span class="text-accent">.</span>
+				</h2>
 				<p class="text-content leading-relaxed">
 					Hello! I'm Edwin Peraza, a passionate software developer with a strong
 					focus on leveraging technology to solve impactful problems. This
