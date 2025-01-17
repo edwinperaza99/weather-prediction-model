@@ -1,9 +1,9 @@
 <template>
-	<div class="hero bg-base-100 min-h-viewport border-b-2 border-accent">
-		<div class="text-center hero-content">
+	<div class="hero bg-base-100 border-b-2 border-accent min-h-viewport">
+		<div class="text-center hero-content flex flex-col gap-0">
 			<div class="max-w-lg">
-				<h1 class="mb-4 text-4xl font-extrabold text-primary">Weatheria</h1>
-				<p class="mb-6 text-lg text-content">
+				<h1 class="mb-4 text-6xl font-black text-primary">Weatheria</h1>
+				<p class="mb-6 text-lg text-content font-light leading-tight">
 					Leverage the power of advanced machine learning algorithms to
 					accurately predict weather patterns. Start exploring today!
 				</p>
@@ -22,6 +22,7 @@
 					</a>
 				</div>
 			</div>
+			<First />
 		</div>
 	</div>
 </template>
