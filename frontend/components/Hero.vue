@@ -10,13 +10,13 @@
 				<div class="flex justify-center gap-4">
 					<a
 						href="#predict-form"
-						class="btn btn-accent text-white text-lg hover:scale-105 transition-transform"
+						class="btn btn-accent text-white hover:text-white/80 text-lg hover:scale-105 transition-transform"
 					>
 						Get Started
 					</a>
 					<a
 						href="/about"
-						class="btn btn-secondary text-white/80 text-lg hover:text-white hover:border-white transition-all"
+						class="btn btn-secondary text-white hover:text-white/80 text-lg hover:scale-105 transition-transform"
 					>
 						Learn More
 					</a>

@@ -29,7 +29,7 @@
                             </nuxt-link>
                         </li>
                         <li class="dropdown dropdown-hover dropdown-end text-primary">
-                            <label tabindex="0" class="btn btn-primary btn-sm">
+                            <label tabindex="0" class="btn btn-primary btn-sm relative">
                                 Theme
                                 <svg width="12px" height="12px" class="inline-block h-3 w-3 fill-current ml-1"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
@@ -37,7 +37,7 @@
                                 </svg>
                             </label>
                             <ul tabindex="0"
-                                class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2">
+                                class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 absolute z-[9000]">
                                 <li v-for="theme in themes" :key="theme" @click="changeTheme(theme)">
                                     <button class="btn btn-ghost btn-sm w-full" :class="{
                                         'text-accent': theme === currentTheme, // Add text-accent if selected
@@ -83,7 +83,7 @@
                     </nuxt-link>
                 </li>
                 <li>
-                <li class="dropdown dropdown-hover text-primary">
+                <li class="dropdown dropdown-hover text-primary relative">
                     <label tabindex="0" class="btn btn-primary btn-sm">
                         Select Theme
                         <!-- <svg
@@ -98,7 +98,7 @@
 									></path>
 								</svg> -->
                     </label>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-200 shadow-md rounded-box w-52 p-2 z-[1000]">
+                    <ul tabindex="0" class="dropdown-content menu bg-base-200 shadow-md rounded-box w-52 p-2 z-[9000] absolute">
                         <li v-for="theme in themes" :key="theme" @click="changeTheme(theme)">
                             <button class="btn btn-ghost btn-sm w-full" :class="{
                                 'text-accent': theme === currentTheme, // Add text-accent if selected

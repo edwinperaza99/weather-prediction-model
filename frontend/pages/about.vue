@@ -1,10 +1,39 @@
 <template>
 	<div id="about" class="py-10 bg-base-100">
 		<div class="container mx-auto px-4">
-			<!-- About Section Header -->
-			<h1 class="text-4xl font-bold text-primary text-center mb-8">
-				About Weatheria
-			</h1>
+			<!-- Header Section -->
+			<div
+				class="flex flex-col md:flex-row items-center justify-between mb-12 gap-1"
+			>
+				<div class="md:w-3/5">
+					<h1 class="text-4xl font-bold text-primary">Weatheria</h1>
+					<div class="flex items-center gap-2 mb-4">
+						<p class="text-xs text-secondary">ウェザリア (Wezaria)</p>
+						<button
+							class="inline"
+							@click="playPronunciation"
+							aria-label="Play pronunciation"
+						>
+							🔊
+						</button>
+					</div>
+					<p class="text-content leading-relaxed">
+						The name is inspired by a fictional sky island from the show
+						<em>One Piece</em>, a place known for its innovative connection to
+						weather. This inspiration aligns with the project's mission to merge
+						advanced machine learning with climate data, delivering precise
+						predictions of Earth surface temperatures and meaningful climate
+						insights.
+					</p>
+				</div>
+				<div class="md:w-1/3">
+					<img
+						src="~/assets/images/weatheria.png"
+						alt="Weatheria illustration"
+						class="drop-shadow-2xl"
+					/>
+				</div>
+			</div>
 
 			<!-- Project Overview -->
 			<div class="mb-12">
@@ -39,8 +68,8 @@
 					<li>
 						<strong>Machine Learning:</strong> Models include Random Forest,
 						K-Nearest Neighbor, Support Vector Regression (SVR), and Linear
-						Regression. The Random Forest model achieved the highest \(R^2\)
-						score of <span class="text-accent">0.9857</span>.
+						Regression. The Random Forest model achieved the highest R² score of
+						<span class="text-accent">0.9857</span>.
 					</li>
 					<li>
 						<strong>Deployment:</strong> Hosted on AWS using Docker for seamless
@@ -57,7 +86,7 @@
 				<p class="text-content leading-relaxed mb-4">
 					The dataset used in this project is sourced from the
 					<a
-						href=""
+						href="https://berkeleyearth.org/data/"
 						class="text-primary hover:text-accent"
 						target="_blank"
 						rel="noopener noreferrer"
