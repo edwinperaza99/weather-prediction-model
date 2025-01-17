@@ -98,7 +98,7 @@
 									></path>
 								</svg> -->
                     </label>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-200 shadow-md rounded-box w-52 p-2 z-50">
+                    <ul tabindex="0" class="dropdown-content menu bg-base-200 shadow-md rounded-box w-52 p-2 z-[1000]">
                         <li v-for="theme in themes" :key="theme" @click="changeTheme(theme)">
                             <button class="btn btn-ghost btn-sm w-full" :class="{
                                 'text-accent': theme === currentTheme, // Add text-accent if selected

@@ -6,7 +6,7 @@
 		<ul class="timeline timeline-vertical">
 			<li v-for="(modelName, index) in modelNames" :key="index">
 				<hr v-if="index > 0" class="bg-accent" />
-				<div class="timeline-start">
+				<div class="timeline-start timeline-box">
 					{{ modelName }}
 				</div>
 				<div class="timeline-middle">
@@ -29,7 +29,13 @@
 					</span>
 					<span v-else> Awaiting input... </span>
 				</div>
-				<hr v-if="index < 2" class="bg-accent" />
+				<hr v-if="index < 3" class="bg-accent" />
+			</li>
+			<li>
+				<hr class="bg-accent" />
+				<div class="timeline-middle">
+					<p class="font-accent font-thin">disclaimer hehehe</p>
+				</div>
 			</li>
 		</ul>
 	</div>
