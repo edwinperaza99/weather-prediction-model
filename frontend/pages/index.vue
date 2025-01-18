@@ -133,11 +133,7 @@
 		</div>
 	</div>
 	<!-- Predictions Timeline -->
-	<Predictions
-		:predictions="predictions"
-		:skeletonCount="3"
-		:loading="loading"
-	/>
+	<Predictions :predictions="predictions" :loading="loading" />
 </template>
 
 <script>

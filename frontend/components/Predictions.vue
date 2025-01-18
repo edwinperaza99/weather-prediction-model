@@ -95,6 +95,11 @@
 				required: false,
 				default: () => [], // Default to an empty array
 			},
+			loading: {
+				type: Boolean,
+				required: false,
+				default: false, // Default to false
+			},
 		},
 		data() {
 			return {
