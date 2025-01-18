@@ -200,13 +200,16 @@
 					};
 
 					// Send the data as a JSON payload to the API
-					const response = await fetch("http://34.83.214.37:9000/predict", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json", // Set Content-Type to application/json
-						},
-						body: JSON.stringify(requestData), // Convert the data to JSON format
-					});
+					const response = await fetch(
+						"https://weather-api.edwinperaza.com/predict",
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json", // Set Content-Type to application/json
+							},
+							body: JSON.stringify(requestData), // Convert the data to JSON format
+						}
+					);
 
 					if (!response.ok) {
 						const errorData = await response.json();
