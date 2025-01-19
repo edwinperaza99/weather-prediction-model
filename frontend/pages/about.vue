@@ -2,10 +2,10 @@
 	<div id="about" class="pt-6 md:pt-16 bg-base-100">
 		<div class="container mx-auto px-2">
 			<!-- Header Section -->
-			<div
+			<section
 				class="flex flex-col md:flex-row items-center justify-between mb-12 gap-1"
 			>
-				<div class="md:w-3/5">
+				<header class="md:w-3/5">
 					<h1 class="text-6xl font-bold text-primary">Weatheria</h1>
 					<div class="flex items-center gap-2 mb-4">
 						<p class="text-xs text-secondary">ウェザリア (Wezaria)</p>
@@ -25,21 +25,23 @@
 						predictions of Earth surface temperatures and meaningful climate
 						insights.
 					</p>
-				</div>
-				<div class="md:w-1/3">
+				</header>
+				<figure class="md:w-1/3">
 					<img
 						src="~/assets/images/weatheria.png"
 						alt="Weatheria illustration"
 						class="drop-shadow-2xl"
 					/>
-				</div>
-			</div>
+				</figure>
+			</section>
 
 			<!-- Project Overview -->
-			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					What Does Weatheria Do<span class="text-accent">?</span>
-				</h2>
+			<section class="mb-12">
+				<header>
+					<h2 class="text-3xl font-semibold text-secondary mb-4">
+						What Does Weatheria Do<span class="text-accent">?</span>
+					</h2>
+				</header>
 				<p class="text-content leading-relaxed">
 					Weatheria predicts Earth surface temperatures using advanced machine
 					learning techniques. By analyzing historical climate data, it
@@ -48,13 +50,15 @@
 					a deeper understanding of climate change's impact and help build
 					resilience against its effects.
 				</p>
-			</div>
+			</section>
 
 			<!-- Technical Details -->
-			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					How It Was Built<span class="text-accent">.</span>
-				</h2>
+			<section class="mb-12">
+				<header>
+					<h2 class="text-3xl font-semibold text-secondary mb-4">
+						How It Was Built<span class="text-accent">.</span>
+					</h2>
+				</header>
 				<ul class="list-disc list-inside text-content leading-relaxed">
 					<li>
 						<strong>Frontend:</strong> Built using Nuxt.js with TailwindCSS for
@@ -89,13 +93,15 @@
 						high-quality illustrations to enhance the user interface.
 					</li>
 				</ul>
-			</div>
+			</section>
 
 			<!-- Dataset and Data Handling -->
-			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					Dataset and Data Handling<span class="text-accent">.</span>
-				</h2>
+			<section class="mb-12">
+				<header>
+					<h2 class="text-3xl font-semibold text-secondary mb-4">
+						Dataset and Data Handling<span class="text-accent">.</span>
+					</h2>
+				</header>
 				<p class="text-content leading-relaxed mb-4">
 					The dataset used in this project is sourced from the
 					<a
@@ -128,13 +134,17 @@
 					models to effectively capture spatial and temporal patterns in global
 					temperature changes.
 				</p>
-			</div>
+			</section>
 
 			<!-- Machine Learning Models -->
-			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					Machine Learning Models and Results<span class="text-accent">.</span>
-				</h2>
+			<section class="mb-12">
+				<header>
+					<h2 class="text-3xl font-semibold text-secondary mb-4">
+						Machine Learning Models and Results<span class="text-accent"
+							>.</span
+						>
+					</h2>
+				</header>
 				<p class="text-content leading-relaxed mb-4">
 					Four machine learning algorithms were employed to analyze the data:
 					Random Forest, K-Nearest Neighbor (KNN), Support Vector Regression
@@ -242,13 +252,15 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</section>
 
 			<!-- Results -->
-			<div class="mb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					Key Results<span class="text-accent">.</span>
-				</h2>
+			<section class="mb-12">
+				<header>
+					<h2 class="text-3xl font-semibold text-secondary mb-4">
+						Key Results<span class="text-accent">.</span>
+					</h2>
+				</header>
 				<p class="text-content leading-relaxed mb-6">
 					The project analyzed global climate data to predict temperature trends
 					with remarkable accuracy. Below is a summary of the performance of the
@@ -287,13 +299,15 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</section>
 
 			<!-- About Me -->
-			<div class="pb-12">
-				<h2 class="text-3xl font-semibold text-secondary mb-4">
-					About Me<span class="text-accent">.</span>
-				</h2>
+			<section class="pb-12">
+				<header>
+					<h2 class="text-3xl font-semibold text-secondary mb-4">
+						About Me<span class="text-accent">.</span>
+					</h2>
+				</header>
 				<p class="text-content leading-relaxed">
 					Hello! I'm Edwin Peraza, a passionate software developer with a strong
 					focus on leveraging technology to solve impactful problems. This
@@ -302,7 +316,7 @@
 					While it was a class project, I contributed the majority of the work,
 					including the implementation, research, and deployment.
 				</p>
-			</div>
+			</section>
 		</div>
 	</div>
 </template>

@@ -1,7 +1,7 @@
 <template>
 	<Hero />
 	<div class="border-b-2 border-accent">
-		<div class="container mx-auto px-4 py-6 md:py-8" id="predict-form">
+		<header class="container mx-auto px-4 pt-6 md:pt-8" id="predict-form">
 			<h2 class="text-primary text-4xl font-semibold mb-1">
 				Test the models<span class="text-secondary">.</span>
 			</h2>
@@ -10,111 +10,118 @@
 				built using machine learning. The results show how each model performs
 				with real-world inputs.
 			</p>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
-				<div
-					class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-2 border-accent flex flex-col flex-none"
+		</header>
+		<section
+			class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 container mx-auto px-4 pb-6 md:pb-8"
+		>
+			<article
+				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-2 border-accent flex flex-col flex-none"
+				aria-labelledby="predict-weather-form"
+			>
+				<h2
+					class="text-2xl lg:text-3xl font-semibold text-center mb-2 md:mb-4 text-primary"
 				>
-					<h2
-						class="text-3xl md:text-4xl font-bold text-center mb-4 text-primary"
-					>
-						Predict
-					</h2>
+					Predict Earth's Surface Temperature
+				</h2>
 
-					<form
-						@submit.prevent="handleSubmit"
-						class="grid grid-cols-1 md:grid-cols-2 gap-4"
-					>
-						<!-- Month -->
-						<div class="form-control">
-							<label for="month" class="label">
-								<span class="label-text font-medium text-secondary">Month</span>
-							</label>
-							<select
-								id="month"
-								class="select select-bordered select-accent w-full bg-base-200"
-								v-model="month"
-								required
+				<form
+					@submit.prevent="handleSubmit"
+					class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4"
+				>
+					<!-- Month -->
+					<fieldset class="form-control">
+						<legend class="sr-only">Date Selection</legend>
+						<label for="month" class="label">
+							<span class="label-text font-medium text-secondary">Month</span>
+						</label>
+						<select
+							id="month"
+							class="select select-bordered select-accent w-full bg-base-200"
+							v-model="month"
+							required
+						>
+							<option value="" disabled selected>Select Month</option>
+							<option value="1">January</option>
+							<option value="2">February</option>
+							<option value="3">March</option>
+							<option value="4">April</option>
+							<option value="5">May</option>
+							<option value="6">June</option>
+							<option value="7">July</option>
+							<option value="8">August</option>
+							<option value="9">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</fieldset>
+
+					<!-- Year -->
+					<div class="form-control">
+						<label for="year" class="label">
+							<span class="label-text font-medium text-secondary">Year</span>
+						</label>
+						<input
+							type="number"
+							id="year"
+							class="input input-bordered input-accent w-full bg-base-200"
+							placeholder="Enter Year (e.g., 2025)"
+							v-model="year"
+							required
+							min="1000"
+							max="9999"
+							inputmode="numeric"
+						/>
+					</div>
+
+					<!-- Longitude -->
+					<fieldset class="form-control">
+						<legend class="sr-only">Location Coordinates</legend>
+						<label for="longitude" class="label">
+							<span class="label-text font-medium text-secondary"
+								>Longitude</span
 							>
-								<option value="" disabled selected>Select Month</option>
-								<option value="1">January</option>
-								<option value="2">February</option>
-								<option value="3">March</option>
-								<option value="4">April</option>
-								<option value="5">May</option>
-								<option value="6">June</option>
-								<option value="7">July</option>
-								<option value="8">August</option>
-								<option value="9">September</option>
-								<option value="10">October</option>
-								<option value="11">November</option>
-								<option value="12">December</option>
-							</select>
-						</div>
+						</label>
+						<input
+							type="number"
+							id="longitude"
+							class="input input-bordered input-accent w-full bg-base-200"
+							placeholder="Enter Longitude"
+							v-model="longitude"
+							@input="updateMapCenter"
+							step="any"
+							required
+						/>
+					</fieldset>
 
-						<!-- Year -->
-						<div class="form-control">
-							<label for="year" class="label">
-								<span class="label-text font-medium text-secondary">Year</span>
-							</label>
-							<input
-								type="number"
-								id="year"
-								class="input input-bordered input-accent w-full bg-base-200"
-								placeholder="Enter Year (e.g., 2025)"
-								v-model="year"
-								required
-								min="1000"
-								max="9999"
-								inputmode="numeric"
-							/>
-						</div>
+					<!-- Latitude -->
+					<div class="form-control">
+						<label for="latitude" class="label">
+							<span class="label-text font-medium text-secondary"
+								>Latitude</span
+							>
+						</label>
+						<input
+							type="number"
+							id="latitude"
+							class="input input-bordered input-accent w-full bg-base-200"
+							placeholder="Enter Latitude"
+							v-model="latitude"
+							@input="updateMapCenter"
+							step="any"
+							required
+						/>
+					</div>
 
-						<!-- Longitude -->
-						<div class="form-control">
-							<label for="longitude" class="label">
-								<span class="label-text font-medium text-secondary"
-									>Longitude</span
-								>
-							</label>
-							<input
-								type="number"
-								id="longitude"
-								class="input input-bordered input-accent w-full bg-base-200"
-								placeholder="Enter Longitude"
-								v-model="longitude"
-								@input="updateMapCenter"
-								step="any"
-								required
-							/>
-						</div>
-
-						<!-- Latitude -->
-						<div class="form-control">
-							<label for="latitude" class="label">
-								<span class="label-text font-medium text-secondary"
-									>Latitude</span
-								>
-							</label>
-							<input
-								type="number"
-								id="latitude"
-								class="input input-bordered input-accent w-full bg-base-200"
-								placeholder="Enter Latitude"
-								v-model="latitude"
-								@input="updateMapCenter"
-								step="any"
-								required
-							/>
-						</div>
-
-						<!-- Submit Button -->
-						<div class="form-control md:col-span-2">
-							<button type="submit" class="btn btn-primary w-full">
-								Submit
-							</button>
-						</div>
-					</form>
-				</div>
+					<!-- Submit Button -->
+					<div class="form-control md:col-span-2 mt-4 md:mt-0">
+						<button type="submit" class="btn btn-primary w-full">
+							Generate Results
+						</button>
+					</div>
+				</form>
+			</article>
+			<aside>
 				<LMap
 					:zoom="zoom"
 					:center.sync="mapCenter"
@@ -129,8 +136,8 @@
 						name="OpenStreetMap"
 					/>
 				</LMap>
-			</div>
-		</div>
+			</aside>
+		</section>
 	</div>
 	<!-- Predictions Timeline -->
 	<Predictions :predictions="predictions" :loading="loading" />
