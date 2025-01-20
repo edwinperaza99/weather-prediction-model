@@ -30,7 +30,7 @@
 					<img
 						src="~/assets/images/weatheria.png"
 						alt="Weatheria illustration"
-						class="drop-shadow-2xl"
+						class="drop-shadow-2xl illustration"
 					/>
 				</figure>
 			</section>
@@ -320,3 +320,59 @@
 		</div>
 	</div>
 </template>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	export default {
+		mounted() {
+			const timeline = gsap.timeline({
+				scrollTrigger: {
+					trigger: "#about", // The main container
+					start: "top center",
+					end: "bottom center",
+					scrub: true,
+				},
+			});
+
+			// Animate the header (Weatheria text)
+			gsap.from(".text-primary", {
+				y: -50,
+				opacity: 0,
+				duration: 1.5,
+				ease: "power4.out",
+			});
+
+			// Animate sub-header (Wezaria and description)
+			gsap.from(".text-secondary, .text-content", {
+				x: -100,
+				opacity: 0,
+				duration: 1.2,
+				stagger: 0.3,
+				ease: "power3.inOut",
+			});
+
+			// Stagger images and other sections
+			timeline.fromTo(
+				".about-section",
+				{ opacity: 0, y: 50 },
+				{ opacity: 1, y: 0, duration: 1.5, stagger: 0.2, ease: "power2.out" }
+			);
+
+			// Parallax effect for the Weatheria illustration
+			gsap.to(".illustration", {
+				y: -30,
+				duration: 2,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: ".illustration",
+					start: "top 80%",
+					scrub: true,
+				},
+			});
+		},
+	};
+</script>

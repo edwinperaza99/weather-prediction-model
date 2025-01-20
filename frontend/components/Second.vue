@@ -1,7 +1,11 @@
 <template>
 	<div class="max-w-2xl w-full aspect-square">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-			<g id="freepik--Floor--inject-7">
+		<svg
+			ref="svgElement"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 500 500"
+		>
+			<g id="freepik--Floor--inject-7" class="floor">
 				<ellipse
 					id="freepik--floor--inject-7"
 					cx="250"
@@ -11,7 +15,7 @@
 					class="fill-base-300/50"
 				></ellipse>
 			</g>
-			<g id="freepik--Shadows--inject-7">
+			<g id="freepik--Shadows--inject-7" class="shadow">
 				<ellipse
 					id="freepik--Shadow--inject-7"
 					cx="366.74"
@@ -26,7 +30,7 @@
 					class="fill-base-300/90"
 				></path>
 			</g>
-			<g id="freepik--Plants--inject-7">
+			<g id="freepik--Plants--inject-7" class="plants">
 				<g id="freepik--plants--inject-7">
 					<path
 						d="M398.29,347.2s.15-17.62,5.44-31.85,14.59-24.42,24.68-27.47,20.78,7.34,11.2,16.22S412,323.83,408.26,350Z"
@@ -55,7 +59,7 @@
 				</g>
 			</g>
 			<g id="freepik--Clouds--inject-7">
-				<g id="freepik--clouds--inject-7">
+				<g id="freepik--clouds--inject-7" class="clouds">
 					<path
 						d="M93.93,77.67l-3.44,2V70.44c0-9.55-5-13-11.24-9.5h0A24.53,24.53,0,0,0,67,81.17l-.09,1.76c-1.32-1-3.1-1.12-5.11,0h0c-7,3.65-8.45,10.2-8.81,17.1l0,.79-5.78,3.34c-3,1.67-5.57,6.63-5.8,11.18s2,7.19,5,5.52l46.74-27c3-1.67,5.57-6.39,5.81-10.93S96.9,76,93.93,77.67Z"
 						class="fill-neutral-content"
@@ -66,7 +70,7 @@
 					></path>
 				</g>
 			</g>
-			<g id="freepik--Screen--inject-7">
+			<g id="freepik--Screen--inject-7" class="screen">
 				<g id="freepik--Weather--inject-7">
 					<path
 						d="M36.66,195.29v154a7.59,7.59,0,0,0,.7,3.23,4.61,4.61,0,0,0,.82,1.24,4,4,0,0,0,1,.85c.11.07,7.6,4.37,7.82,4.51a3.89,3.89,0,0,1-.81-.6A5,5,0,0,1,45.11,357a9.18,9.18,0,0,1-.64-3.09V199.73a12.25,12.25,0,0,1,1.58-5.6l-7.79-4.5A12.43,12.43,0,0,0,36.66,195.29Z"
@@ -554,7 +558,7 @@
 					></path>
 				</g>
 			</g>
-			<g id="freepik--Character--inject-7">
+			<g id="freepik--Character--inject-7" class="character">
 				<g id="freepik--character--inject-7">
 					<path
 						d="M316.48,87.64c8.59,1.64,16.81,8.89,21.34,16.58,17.54-.89,39.53,5.07,60,15.45l15.43-59.95C379.78,53.41,347.21,59,316.48,87.64Z"
@@ -766,3 +770,64 @@
 		</svg>
 	</div>
 </template>
+
+<script>
+	import { gsap } from "gsap";
+
+	export default {
+		setup() {
+			const svgElement = ref(null);
+
+			onMounted(() => {
+				const timeline = gsap.timeline();
+
+				// Animate character (man) and screen first
+				timeline
+					.fromTo(
+						".screen",
+						{ x: -50, opacity: 0 },
+						{ x: 0, opacity: 1, duration: 1.5, ease: "power3.inOut" }
+						// "-=1" // Overlap with the previous animation by 2 second
+					)
+					.fromTo(
+						".character",
+						{ x: 50, opacity: 0 },
+						{ x: 0, opacity: 1, duration: 2, ease: "power3.inOut" },
+						"-=1"
+					);
+
+				// Animate shadow
+				timeline.fromTo(
+					".shadow",
+					{ y: 0, opacity: 0 },
+					{ y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
+				);
+
+				// Animate plants
+				timeline.fromTo(
+					".plants",
+					{ scale: 0, opacity: 0 },
+					{ scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }
+				);
+
+				// Animate clouds
+				timeline.fromTo(
+					".clouds",
+					{ x: -20, opacity: 0 },
+					{ x: 0, opacity: 1, duration: 1, ease: "power3.inOut" }
+				);
+				gsap.to(".clouds", {
+					x: 20,
+					duration: 5, // Duration for one way
+					repeat: -1, // Infinite loop
+					yoyo: true, // Reverse direction
+					ease: "power1.inOut", // Smooth transition
+				});
+			});
+
+			return {
+				svgElement,
+			};
+		},
+	};
+</script>

@@ -1,6 +1,6 @@
 <template>
 	<header class="bg-base-300 border-b-2 border-accent">
-		<nav class="navbar container mx-auto justify-between px-2">
+		<nav ref="navbar" class="navbar container mx-auto justify-between px-2">
 			<!-- Left Section -->
 			<div class="navbar-start">
 				<a
@@ -23,7 +23,7 @@
 			</div>
 
 			<!-- Right Section -->
-			<div class="navbar-end">
+			<div ref="menuItems" class="navbar-end">
 				<!-- Desktop navbar -->
 				<div class="hidden md:flex text-base-content">
 					<ul class="menu menu-horizontal space-x-0.5">
@@ -185,7 +185,43 @@
 </template>
 
 <script>
+	import { gsap } from "gsap";
 	export default {
+		setup() {
+			const navbar = ref(null);
+			const menuItems = ref(null);
+
+			onMounted(() => {
+				// Animate the navbar sliding down from the top
+				gsap.fromTo(
+					navbar.value,
+					{ y: -50, opacity: 0 },
+					{ y: 0, opacity: 1, duration: 1, ease: "power3.inOut" }
+				);
+
+				// Animate menu items with a staggered effect
+				gsap.fromTo(
+					menuItems.value.querySelectorAll("li"),
+					{ y: 50, opacity: 0, rotate: -45, scale: 0.5 }, // Start state: fly-in, rotated, and smaller
+					{
+						y: 0,
+						opacity: 1,
+						rotate: 0, // Reset rotation
+						scale: 1, // Reset scale
+						duration: 1.2,
+						stagger: 0.2, // Stagger effect for cascading animation
+						ease: "back.out(1.7)", // Back easing for a "pop-out" effect
+						delay: 0.3, // Start after the navbar animation
+					}
+				);
+			});
+
+			return {
+				navbar,
+				menuItems,
+			};
+		},
+
 		data() {
 			return {
 				isMobileMenuOpen: false,

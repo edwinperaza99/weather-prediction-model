@@ -35,16 +35,18 @@
 								</svg>
 							</div>
 							<div class="timeline-end timeline-box">
-								<span v-if="predictions?.[index]">
-									{{
-										convertTemperature(predictions[index].prediction).toFixed(2)
-									}}
+								<span v-if="tweenedPredictions[index]?.value">
+									{{ tweenedPredictions[index].value.toFixed(2) }}
 									<span v-if="selectedUnit === 'C'">°C</span>
 									<span v-else-if="selectedUnit === 'F'">°F</span>
 									<span v-else>K</span>
 								</span>
-								<div v-else-if="loading">Loading predictions...</div>
-								<span v-else> Awaiting input... </span>
+								<div v-else-if="loading" class="flex gap-0.5 items-end">
+									<span
+										class="loading loading-dots loading-sm flex justify-center items-center text-secondary"
+									></span>
+								</div>
+								<span v-else> Awaiting input...</span>
 							</div>
 							<hr v-if="index < 3" class="bg-accent" />
 						</li>
@@ -87,6 +89,8 @@
 </template>
 
 <script>
+	import gsap from "gsap";
+
 	export default {
 		name: "PredictionTimeline",
 		props: {
@@ -101,24 +105,73 @@
 				default: false, // Default to false
 			},
 		},
+		setup(props) {
+			// Reactive object for tweened predictions
+			const tweenedPredictions = reactive([]);
+
+			// Initialize tweened predictions once predictions are available
+			const initializeTweenedPredictions = () => {
+				// Clear existing data to avoid duplications
+				tweenedPredictions.length = 0;
+
+				// Populate the reactive array only if predictions exist
+				if (props.predictions && props.predictions.length > 0) {
+					props.predictions.forEach((prediction) => {
+						tweenedPredictions.push({ value: prediction?.prediction || 0 });
+					});
+				}
+			};
+
+			// Call initialization on component mount
+			onMounted(() => {
+				initializeTweenedPredictions();
+			});
+
+			// Reinitialize if predictions prop changes dynamically
+			watch(() => props.predictions, initializeTweenedPredictions, {
+				deep: true,
+			});
+
+			return { tweenedPredictions };
+		},
 		data() {
 			return {
 				// Fixed list of model names
 				modelNames: ["KNN", "Linear Regression", "Random Forest"],
-				selectedUnit: "C",
+				selectedUnit: ref("C"),
 			};
 		},
 		methods: {
-			convertTemperature(value) {
-				if (this.selectedUnit === "F") {
+			convertTemperature(value, unit) {
+				if (unit === "F") {
 					// Celsius to Fahrenheit: (Celsius * 9/5) + 32
 					return (value * 9) / 5 + 32;
-				} else if (this.selectedUnit === "K") {
+				} else if (unit === "K") {
 					// Celsius to Kelvin: Celsius + 273.15
 					return value + 273.15;
 				}
 				// Default to Celsius
 				return value;
+			},
+		},
+		watch: {
+			selectedUnit(newUnit) {
+				// Check if predictions are initialized before animating
+				if (this.predictions && this.predictions.length > 0) {
+					this.predictions.forEach((prediction, index) => {
+						const convertedValue = this.convertTemperature(
+							prediction.prediction,
+							newUnit
+						);
+
+						// Animate the tweened values
+						gsap.to(this.tweenedPredictions[index], {
+							value: convertedValue,
+							duration: 0.5,
+							ease: "power2.out",
+						});
+					});
+				}
 			},
 		},
 	};
