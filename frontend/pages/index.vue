@@ -115,8 +115,12 @@
 
 					<!-- Submit Button -->
 					<div class="form-control md:col-span-2 mt-4 md:mt-0">
-						<button type="submit" class="btn btn-primary w-full">
-							Generate Results
+						<button
+							type="submit"
+							class="btn btn-primary w-full"
+							:disabled="loading"
+						>
+							{{ loading ? "Generating Results..." : "Generate Results" }}
 						</button>
 					</div>
 				</form>
@@ -187,6 +191,7 @@
 				}
 			},
 			async handleSubmit() {
+				this.loading = true;
 				console.log("Form Submitted", {
 					month: this.month,
 					year: this.year,
