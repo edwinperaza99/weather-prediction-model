@@ -10,7 +10,7 @@
 					href="https://github.com/edwinperaza99/weather-prediction-model"
 					rel="noopener noreferrer"
 					target="_blank"
-					class="flex items-center space-x-2 hover:text-primary transition-colors menu"
+					class="flex items-center space-x-2 text-primary hover:text-accent transition-colors menu"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
