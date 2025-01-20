@@ -109,8 +109,14 @@
 			// Reactive object for tweened predictions
 			const tweenedPredictions = reactive([]);
 
+			// Reactive selected unit (default to Celsius)
+			const selectedUnit = ref("C");
+
 			// Initialize tweened predictions once predictions are available
 			const initializeTweenedPredictions = () => {
+				// Reset selectedUnit to Celsius when new predictions arrive
+				selectedUnit.value = "C";
+
 				// Clear existing data to avoid duplications
 				tweenedPredictions.length = 0;
 
@@ -132,17 +138,27 @@
 				deep: true,
 			});
 
-			return { tweenedPredictions };
-		},
-		data() {
-			return {
-				// Fixed list of model names
-				modelNames: ["KNN", "Linear Regression", "Random Forest"],
-				selectedUnit: ref("C"),
-			};
-		},
-		methods: {
-			convertTemperature(value, unit) {
+			// Watch for changes in selectedUnit to update temperatures
+			watch(selectedUnit, (newUnit) => {
+				if (props.predictions && props.predictions.length > 0) {
+					props.predictions.forEach((prediction, index) => {
+						const convertedValue = convertTemperature(
+							prediction.prediction,
+							newUnit
+						);
+
+						// Animate the tweened values
+						gsap.to(tweenedPredictions[index], {
+							value: convertedValue,
+							duration: 1,
+							ease: "power2.out",
+						});
+					});
+				}
+			});
+
+			// Function to convert temperature based on unit
+			const convertTemperature = (value, unit) => {
 				if (unit === "F") {
 					// Celsius to Fahrenheit: (Celsius * 9/5) + 32
 					return (value * 9) / 5 + 32;
@@ -152,27 +168,19 @@
 				}
 				// Default to Celsius
 				return value;
-			},
-		},
-		watch: {
-			selectedUnit(newUnit) {
-				// Check if predictions are initialized before animating
-				if (this.predictions && this.predictions.length > 0) {
-					this.predictions.forEach((prediction, index) => {
-						const convertedValue = this.convertTemperature(
-							prediction.prediction,
-							newUnit
-						);
+			};
 
-						// Animate the tweened values
-						gsap.to(this.tweenedPredictions[index], {
-							value: convertedValue,
-							duration: 0.5,
-							ease: "power2.out",
-						});
-					});
-				}
-			},
+			return {
+				tweenedPredictions,
+				selectedUnit,
+				convertTemperature,
+			};
+		},
+		data() {
+			return {
+				// Fixed list of model names
+				modelNames: ["KNN", "Linear Regression", "Random Forest"],
+			};
 		},
 	};
 </script>
