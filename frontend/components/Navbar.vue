@@ -1,6 +1,9 @@
 <template>
-	<header class="bg-base-300 border-b-2 border-accent">
-		<nav ref="navbar" class="navbar container mx-auto justify-between px-2">
+	<header class="bg-base-300 border-b-2 border-accent z-[9000] relative">
+		<nav
+			ref="navbar"
+			class="navbar container mx-auto justify-between px-2 relative"
+		>
 			<!-- Left Section -->
 			<div class="navbar-start">
 				<a
@@ -63,7 +66,7 @@
 							</label>
 							<ul
 								tabindex="0"
-								class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000]"
+								class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 max-h-[65vh] z-[9000]"
 							>
 								<li
 									v-for="theme in themes"
@@ -161,7 +164,7 @@
 					</label>
 					<ul
 						tabindex="0"
-						class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000] text-base-content"
+						class="dropdown-content menu bg-base-200 shadow-md border border-accent rounded-box w-52 p-2 z-[9000] text-base-content max-h-[60vh]"
 					>
 						<li
 							v-for="theme in themes"
