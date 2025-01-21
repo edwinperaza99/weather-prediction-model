@@ -5,14 +5,14 @@
 			<h2 class="text-primary text-4xl font-semibold mb-1">
 				Test the models<span class="text-secondary">.</span>
 			</h2>
-			<p class="mb-4 text-sm text-base-content">
+			<p class="text-sm text-base-content">
 				Enter a location and time to see temperature predictions from models I
 				built using machine learning. The results show how each model performs
 				with real-world inputs.
 			</p>
 		</header>
 		<section
-			class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 container mx-auto px-4 pb-6 md:pb-8"
+			class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 container mx-auto px-4 py-2 md:py-4"
 		>
 			<article
 				class="p-4 md:p-8 bg-base-100 rounded-lg shadow-xl border-2 border-accent flex flex-col flex-none"
@@ -125,7 +125,7 @@
 					</div>
 				</form>
 			</article>
-			<aside>
+			<aside class="relative w-full h-full">
 				<LMap
 					:zoom="zoom"
 					:center.sync="mapCenter"
@@ -140,8 +140,16 @@
 						name="OpenStreetMap"
 					/>
 				</LMap>
+				<div
+					class="mask mask-star center-indicator absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-7 w-7 bg-accent z-[1000] pointer-events-none"
+				></div>
 			</aside>
 		</section>
+		<p class="text-sm text-base-content container mx-auto px-4 pb-6 md:pb-8">
+			You can either drag the map to adjust the location or input your desired
+			coordinates directly in the form. The center of the map will be used as
+			the selected coordinates for predictions.
+		</p>
 	</div>
 	<!-- Predictions Timeline -->
 	<Predictions :predictions="predictions" :loading="loading" />
