@@ -1,6 +1,6 @@
 <template>
 	<div id="about" class="pt-6 md:pt-16 bg-base-100">
-		<div class="container mx-auto px-2">
+		<div class="container mx-auto px-2" id="about-content">
 			<!-- Header Section -->
 			<section
 				class="flex flex-col md:flex-row items-center justify-between mb-12 gap-1"
@@ -19,18 +19,18 @@
 					</div>
 					<p class="text-content leading-relaxed">
 						The name is inspired by a fictional sky island from the show
-						<em>One Piece</em>, a place known for its innovative connection to
-						weather. This inspiration aligns with the project's mission to merge
-						advanced machine learning with climate data, delivering precise
-						predictions of Earth surface temperatures and meaningful climate
-						insights.
+						<em class="text-accent">One Piece</em>, a place known for its
+						innovative connection to weather. This inspiration aligns with the
+						project's mission to merge advanced machine learning with climate
+						data, delivering precise predictions of Earth surface temperatures
+						and meaningful climate insights.
 					</p>
 				</header>
 				<figure class="md:w-1/3">
 					<img
 						src="~/assets/images/weatheria.png"
 						alt="Weatheria illustration"
-						class="drop-shadow-2xl illustration"
+						class="drop-shadow-2xl"
 					/>
 				</figure>
 			</section>
@@ -323,55 +323,15 @@
 
 <script>
 	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-	gsap.registerPlugin(ScrollTrigger);
 
 	export default {
 		mounted() {
-			const timeline = gsap.timeline({
-				scrollTrigger: {
-					trigger: "#about", // The main container
-					start: "top center",
-					end: "bottom center",
-					scrub: true,
-				},
-			});
-
-			// Animate the header (Weatheria text)
-			gsap.from(".text-primary", {
-				y: -50,
+			// Fade-in with slide-up effect
+			gsap.from("#about-content", {
 				opacity: 0,
-				duration: 1.5,
-				ease: "power4.out",
-			});
-
-			// Animate sub-header (Wezaria and description)
-			gsap.from(".text-secondary, .text-content", {
-				x: -100,
-				opacity: 0,
-				duration: 1.2,
-				stagger: 0.3,
-				ease: "power3.inOut",
-			});
-
-			// Stagger images and other sections
-			timeline.fromTo(
-				".about-section",
-				{ opacity: 0, y: 50 },
-				{ opacity: 1, y: 0, duration: 1.5, stagger: 0.2, ease: "power2.out" }
-			);
-
-			// Parallax effect for the Weatheria illustration
-			gsap.to(".illustration", {
-				y: -30,
+				y: 50, // Slide up by 50px
 				duration: 2,
-				ease: "power2.out",
-				scrollTrigger: {
-					trigger: ".illustration",
-					start: "top 80%",
-					scrub: true,
-				},
+				ease: "power3.out",
 			});
 		},
 	};
