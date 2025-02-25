@@ -311,10 +311,12 @@
 				<p class="text-content leading-relaxed">
 					Hello! I'm Edwin Peraza, a passionate software developer with a strong
 					focus on leveraging technology to solve impactful problems. This
-					project, a machine learning-powered weather prediction system, was
-					developed during my time at California State University, Fullerton.
-					While it was a class project, I contributed the majority of the work,
-					including the implementation, research, and deployment.
+					project, a machine learning-powered weather prediction system,
+					originated as a group project in my Machine Learning course at
+					California State University, Fullerton, where we developed the models
+					and conducted research. To extend its usability, I designed and built
+					the full-stack web application, allowing users to interact with the
+					models and generate predictions through an intuitive interface.
 				</p>
 			</section>
 		</div>
